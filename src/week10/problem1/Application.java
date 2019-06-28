@@ -21,8 +21,8 @@ public class Application {
 
         int ID[] = {874522,3242563,8567421};
         String employeeName[] = {"Janice Dunbar", "John Smith", "Jamie James"};
-        int annualSalary[] = {29000, 27000, 25000};
-        String employeeType[] = {"Admin", "Support", "Sales"};
+        int annualSalary[] = {28000, 31450, 33800};
+        String employeeType[] = {"Admin", "Sales","Support"};
 
         for (int i=0; i<ID.length; i++) {
             switch (employeeType[i]) {
@@ -32,12 +32,12 @@ public class Application {
                     employees.add(adminUser);
                     break;
                 case "Support":
-                    SupportUser supportUser = new SupportUser(ID[i], employeeName[i], annualSalary[i], 10);
+                    SupportUser supportUser = new SupportUser(ID[i], employeeName[i], annualSalary[i], 9);
                     supportUser.setPayMonthly(supportUser.MonthlyPay(annualSalary[i]));
                     employees.add(supportUser);
                     break;
                 case "Sales":
-                    SalesUser salesUser = new SalesUser(ID[i], employeeName[i], annualSalary[i], 20000,0.04);
+                    SalesUser salesUser = new SalesUser(ID[i], employeeName[i], annualSalary[i], 87329,0.02);
                     salesUser.setPayMonthly(salesUser.MonthlyPay(annualSalary[i]));
                     employees.add(salesUser);
                     break;

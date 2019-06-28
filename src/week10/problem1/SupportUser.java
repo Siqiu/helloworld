@@ -35,18 +35,20 @@ public class SupportUser extends Employee {
 
         double payMonthly;
         // – Annual tax allowance is £10,000 (this amount of income is tax free)
-        int AnnualTaxAllowance = 10000;
+        double AnnualTaxAllowance = TAX_ALLOWANCE;
 
 
         if (annualSalary>AnnualTaxAllowance) {
             // –Tax rate is 20 %
             double taxRate = 0.2;
-            payMonthly = annualSalary * taxRate;
-            // shift 50%
-            dailySalary = annualSalary/12/30;
-            dailySalary = dailySalary+dailySalary*0.5;
+            // monthly pay = (the salary u already pay tax) + (the salary u do not need to pay tax)
+            // ((year) - (tax allowance) / 12) * (the salary I should have )
+            double monthlyBasePay = (annualSalary + - TAX_ALLOWANCE) / 12;
+            dailySalary = monthlyBasePay / 30;
+            dailySalary = dailySalary * 0.5 *nightWorkNumber;
+            payMonthly = (monthlyBasePay + (dailySalary))  * (1-taxRate) + TAX_ALLOWANCE / 12;
 
-            return (payMonthly/12)+(nightWorkNumber*dailySalary);
+            return payMonthly;
 
         }else{
             return annualSalary/12;

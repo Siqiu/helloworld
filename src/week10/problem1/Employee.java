@@ -1,6 +1,7 @@
 package week10.problem1;
 
 public class Employee {
+    protected static final double TAX_ALLOWANCE = 10600;
     private String name;
     private int ID;
     private int annualSalary;
@@ -30,15 +31,18 @@ public class Employee {
 
         double payMonthly;
         // – Annual tax allowance is £10,000 (this amount of income is tax free)
-        int AnnualTaxAllowance = 10000;
+        double AnnualTaxAllowance = TAX_ALLOWANCE;
 
 
         if (annualSalary>AnnualTaxAllowance) {
             // –Tax rate is 20 %
             double taxRate = 0.2;
-            payMonthly = annualSalary * taxRate;
+            // monthly pay = (the salary u already pay tax) + (the salary u do not need to pay tax)
+            // ((year) - (tax allowance) / 12) * (the salary I should have )
+            double monthlyBasePay = (annualSalary + - TAX_ALLOWANCE) / 12;
+            payMonthly = monthlyBasePay * (1-taxRate) + TAX_ALLOWANCE / 12;
 
-            return payMonthly/12;
+            return payMonthly;
 
         }else{
             return annualSalary/12;

@@ -35,15 +35,18 @@ public class SalesUser extends Employee {
 
         double payMonthly;
         // – Annual tax allowance is £10,000 (this amount of income is tax free)
-        int AnnualTaxAllowance = 10000;
+        double AnnualTaxAllowance = TAX_ALLOWANCE;
 
 
         if (annualSalary>AnnualTaxAllowance) {
             // –Tax rate is 20 %
             double taxRate = 0.2;
-            payMonthly = annualSalary * taxRate;
+            // monthly pay = (the salary u already pay tax) + (the salary u do not need to pay tax)
+            // ((year) - (tax allowance) / 12) * (the salary I should have )
+            double monthlyBasePay = (annualSalary + - TAX_ALLOWANCE) / 12;
+            payMonthly = (monthlyBasePay + (commissionRate*worthSaleMonthly))  * (1-taxRate) + TAX_ALLOWANCE / 12;
 
-            return (payMonthly/12)+(worthSaleMonthly*commissionRate);
+            return payMonthly;
 
         }else{
             return annualSalary/12;
